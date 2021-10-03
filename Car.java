@@ -1,11 +1,18 @@
 import java.util.Scanner;
 
 public class Car {
-
+  String Model;
+  double mpg;
+  double gasCapacity;
+  double gasRemaining;
+//declaring instance variables
     public Car(String model, double mpg, double gasTankCapacity) {
-
+      Model= model;
+      this.mpg= mpg;
+      gasCapacity=gasTankCapacity;
+      gasRemaining=0;
     }
-
+//assigning values to instance variables
     public static void main(String[] args) {
         // Create a new Car object, asking the user (using the scanner class) for the model, mpg, and gasTankCapacity
         Scanner sc = new Scanner(System.in);
@@ -43,21 +50,28 @@ public class Car {
 
     public void drive(double distance) {
         // drive for distance (in miles), and update gas tank level accordingly (using mpg)
+        gasRemaining=gasRemaining-distance/mpg;
+        
     }
 
     public void refuel(double gasAmount) {
         // Add gasAmount of gas to the gas tank
+        gasRemaining+=gasAmount;
     }
 
     public double getGasRemaining() {
         // Return the number of gallons of gas currently in the gas tank
+      return gasRemaining;
     }
 
     public double getRange() {
         // Return the estimated amount of miles the car can drive based on current gas remaining and MPG (provided to constructor)
+        return gasRemaining*mpg;
     }
 
     public String toString() {
+      return "Range:"+getRange()+"\nModel: "+Model+"\ngas remaining:"+gasRemaining;
+     
         // Return a string representation of the car's current state.
         // Be sure to include range, model, and gas level.
     }
